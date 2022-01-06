@@ -1,5 +1,6 @@
 function areThereDuplicates(...args) {
   if (args.length < 2) return false;
+  args.sort();
   // Use pointer approach
   let left = 0;
 
@@ -13,5 +14,5 @@ function areThereDuplicates(...args) {
   return false;
 }
 
-console.log(areThereDuplicates('a', 'b', 'c', 'd', 'e', 'f', 1, 1));
+console.log(areThereDuplicates('a', 'b', 'c', 'd', 'e', 'f', 'a', 1));
 //                             ^l   ^r
