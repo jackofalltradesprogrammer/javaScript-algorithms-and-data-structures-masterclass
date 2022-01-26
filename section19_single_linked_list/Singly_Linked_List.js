@@ -50,6 +50,22 @@ class SinglyLinkedList {
       return node;
     }
   }
+
+  // Shift() - removing a node from the beginning of the Linked List!
+  shift() {
+    // no head
+    if (!this.head) return undefined;
+
+    // only one node - need to update the tail
+    // remove the head and update new head
+    const node = this.head;
+    this.head = node.next;
+    this.length--;
+    if (this.length === 0) {
+      this.tail = null;
+    }
+    return node;
+  }
 }
 
 // const first = new Node('Hi'); //?
@@ -61,5 +77,6 @@ list.push('hi');
 list.push('how are you');
 list.push('im fine');
 list.pop();
+list.shift(); //?
 
 list;
