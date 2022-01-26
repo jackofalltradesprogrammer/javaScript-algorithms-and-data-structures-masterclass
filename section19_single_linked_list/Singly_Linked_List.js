@@ -88,9 +88,18 @@ class SinglyLinkedList {
     let node = this.head;
     while (counter !== index) {
       node = node.next;
-      count++;
+      counter++;
     }
     return node;
+  }
+
+  // set() - update the value of a node based on its position in the Linked List
+  set(index, val) {
+    const node = this.get(index);
+    if (!node) return false;
+
+    node.val = val;
+    return true;
   }
 }
 
@@ -106,5 +115,6 @@ list.pop();
 list.shift(); //?
 list.unshift('Thank you! Not now'); //?
 list.get(0);
+list.set(1, 'Keep grinding!');
 
 list;
