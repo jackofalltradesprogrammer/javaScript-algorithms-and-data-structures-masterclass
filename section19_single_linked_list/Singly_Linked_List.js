@@ -101,6 +101,25 @@ class SinglyLinkedList {
     node.val = val;
     return true;
   }
+
+  // insert() - insert a new node at the given index
+  insert(index, val) {
+    if (index === 0) {
+      this.unshift(val);
+    } else if (index === this.length) {
+      this.push(val);
+    }
+
+    const prevNode = this.get(index - 1);
+    if (!prevNode) {
+      return false;
+    }
+    const newNode = new Node(val);
+    newNode.next = prevNode.next;
+    prevNode.next = newNode;
+    this.length++;
+    return true;
+  }
 }
 
 // const first = new Node('Hi'); //?
@@ -113,8 +132,11 @@ list.push('how are you');
 list.push('im fine');
 list.pop();
 list.shift(); //?
-list.unshift('Thank you! Not now'); //?
+list.unshift('Thank you! N2t now'); //?
 list.get(0);
-list.set(1, 'Keep grinding!');
+list.set(1, 'Keep grinding!'); //?
+list.set(-1, 'Keep grinding!'); //?
+list.insert(2, 'Go on!');
+list.insert(2, 'learn from your mistakes!');
 
 list;
