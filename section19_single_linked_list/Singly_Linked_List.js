@@ -66,6 +66,19 @@ class SinglyLinkedList {
     }
     return node;
   }
+
+  // UnShift() - adding a new node to the beginning of the Linked List
+  unshift(val) {
+    const newNode = new Node(val);
+
+    newNode.next = this.head;
+    this.head = newNode;
+    this.length++;
+    if (this.length === 1) {
+      this.tail = this.head;
+    }
+    return this;
+  }
 }
 
 // const first = new Node('Hi'); //?
@@ -78,5 +91,6 @@ list.push('how are you');
 list.push('im fine');
 list.pop();
 list.shift(); //?
+list.unshift('Thank you! Not now'); //?
 
 list;
