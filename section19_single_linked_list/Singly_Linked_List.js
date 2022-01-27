@@ -140,11 +140,30 @@ class SinglyLinkedList {
 
     return removedNode;
   }
+
+  // reverse() - reverse the Linked List
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+    let prev = null;
+    let next = null;
+    while (node) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+    return this;
+  }
 }
 
 // const first = new Node('Hi'); //?
 // first.next = new Node('there'); //?
 // first.next.next = new Node('how'); //?
+
+// a -> b -> c -> d -> e -> f -> g -> h
+// a <- b <- c <-d <- e <- f <- g <- h
 
 const list = new SinglyLinkedList();
 list.push('hi');
@@ -159,5 +178,7 @@ list.set(-1, 'Keep grinding!'); //?
 list.insert(2, 'Go on!');
 list.insert(2, 'learn from your mistakes!');
 list.remove(3); //?
+list;
+list.reverse();
 
 list;
