@@ -108,17 +108,37 @@ class SinglyLinkedList {
       this.unshift(val);
     } else if (index === this.length) {
       this.push(val);
+    } else {
+      const prevNode = this.get(index - 1);
+      if (!prevNode) {
+        return false;
+      }
+      const newNode = new Node(val);
+      newNode.next = prevNode.next;
+      prevNode.next = newNode;
+      this.length++;
     }
-
-    const prevNode = this.get(index - 1);
-    if (!prevNode) {
-      return false;
-    }
-    const newNode = new Node(val);
-    newNode.next = prevNode.next;
-    prevNode.next = newNode;
-    this.length++;
     return true;
+  }
+
+  // remove() - removes a node from the Linked List
+
+  remove(index, val) {
+    if (index < 0 || index >= this.length) {
+      return undefined;
+    }
+    if (index === 0) {
+      return this.shift(val);
+    }
+    if (index === this.length - 1) {
+      return this.pop();
+    }
+    const prevNode = this.get(index - 1);
+    const removedNode = prevNode.next;
+    prevNode.next = removedNode.next;
+    this.length--;
+
+    return removedNode;
   }
 }
 
@@ -138,5 +158,6 @@ list.set(1, 'Keep grinding!'); //?
 list.set(-1, 'Keep grinding!'); //?
 list.insert(2, 'Go on!');
 list.insert(2, 'learn from your mistakes!');
+list.remove(3); //?
 
 list;
