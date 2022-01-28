@@ -136,6 +136,22 @@ class DoublyLinkedList {
     this.length++;
     return true;
   }
+
+  // remove() - removing a node from a doubly linked list by its position
+  remove(index) {
+    if (index < 0 || index >= this.length) return false;
+    if (index === 0) return !!this.shift();
+    if (index === this.length - 1) return !!this.pop();
+    const removedNode = this.get(index);
+    const beforeNode = removedNode.prev;
+    const afterNode = removedNode.next;
+    beforeNode.next = afterNode;
+    afterNode.prev = beforeNode;
+    removedNode.prev = null;
+    removedNode.next = null;
+    this.length--;
+    return true;
+  }
 }
 
 // const node = new Node('mango');
@@ -156,4 +172,5 @@ list.get(5); //?
 list.set(6, 7); //?
 list.insert(6, 7); //?
 list.insert(4, 55); //?
+list.remove(7); //?
 list;
