@@ -118,6 +118,24 @@ class DoublyLinkedList {
     const node = this.get(index);
     return node ? true : false;
   }
+
+  // insert() - adding a node in a doubly linked list
+  insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return !!this.unshift(val);
+    if (index === this.length) return !!this.push(val);
+
+    const afterNode = this.get(index);
+    const beforeNode = afterNode.prev;
+    const newNode = new Node(val);
+
+    newNode.next = afterNode;
+    newNode.prev = beforeNode;
+    beforeNode.next = newNode;
+    afterNode.prev = newNode;
+    this.length++;
+    return true;
+  }
 }
 
 // const node = new Node('mango');
@@ -136,4 +154,6 @@ list.shift(); //?
 list.unshift(1); //?
 list.get(5); //?
 list.set(6, 7); //?
+list.insert(6, 7); //?
+list.insert(4, 55); //?
 list;
