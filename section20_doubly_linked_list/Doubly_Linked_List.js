@@ -68,6 +68,25 @@ class DoublyLinkedList {
     this.length--;
     return oldHead;
   }
+
+  // unshift() adding a node to the beginning of the doubly linked list
+  unshift(val) {
+    //    d      a <-> b <-> c
+    const newHead = new Node(val);
+    // no node in the list
+    if (this.length === 0) {
+      this.head = newHead;
+      this.tail = newHead;
+    } else {
+      this.head.prev = newHead;
+      newHead.next = this.head;
+      this.head = newHead;
+    }
+
+    // increment and return the list
+    this.length++;
+    return this;
+  }
 }
 
 // const node = new Node('mango');
@@ -79,4 +98,5 @@ list.push('2');
 list.push('LAST ITEM!!');
 list.pop(); //?
 list.shift(); //?
+list.unshift(1); //?
 list;
