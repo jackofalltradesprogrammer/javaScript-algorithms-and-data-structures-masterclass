@@ -111,6 +111,13 @@ class DoublyLinkedList {
       }
     }
   }
+
+  // set(index, val) - update the value of a node in a doubly linked list
+  set(index, val) {
+    // use get() to find node
+    const node = this.get(index);
+    return node ? true : false;
+  }
 }
 
 // const node = new Node('mango');
@@ -127,5 +134,6 @@ list.push('LAST ITEM!!');
 list.pop(); //?
 list.shift(); //?
 list.unshift(1); //?
-list.get(6); //?
+list.get(5); //?
+list.set(6, 7); //?
 list;
