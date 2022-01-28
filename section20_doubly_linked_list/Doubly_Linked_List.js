@@ -30,6 +30,24 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+
+  // pop() removing a node from the end of the doubly linked list
+  pop() {
+    //no node in the list
+    if (this.length === 0) return undefined;
+    // if only one node in the list
+    let poppedNode = this.tail;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = poppedNode.prev;
+      poppedNode.prev = null;
+      this.tail.next = null;
+    }
+    this.length--;
+    return poppedNode;
+  }
 }
 
 // const node = new Node('mango');
@@ -39,4 +57,5 @@ const list = new DoublyLinkedList();
 list.push('1');
 list.push('2');
 list.push('LAST ITEM!!');
+list.pop(); //?
 list;
