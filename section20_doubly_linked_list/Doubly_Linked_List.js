@@ -87,6 +87,30 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+
+  // get() - Access a node from the doubly linked list by its position
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+    if (index === 0) return this.head;
+    if (index === this.length - 1) return this.tail;
+    if (index < this.length / 2) {
+      let counter = 0;
+      let node = this.head;
+      while (node) {
+        if (counter === index) return node;
+        counter++;
+        node = node.next;
+      }
+    } else {
+      let counter = this.length - 1;
+      let node = this.tail;
+      while (node) {
+        if (counter === index) return node;
+        counter--;
+        node = node.prev;
+      }
+    }
+  }
 }
 
 // const node = new Node('mango');
@@ -95,8 +119,13 @@ class DoublyLinkedList {
 const list = new DoublyLinkedList();
 list.push('1');
 list.push('2');
+list.push('3');
+list.push('4');
+list.push('5');
+list.push('6');
 list.push('LAST ITEM!!');
 list.pop(); //?
 list.shift(); //?
 list.unshift(1); //?
+list.get(6); //?
 list;
