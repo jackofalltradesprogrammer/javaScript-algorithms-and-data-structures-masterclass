@@ -152,6 +152,22 @@ class DoublyLinkedList {
     this.length--;
     return true;
   }
+
+  // reverse the doubly linked list
+  reverse() {
+    let previousNode = null;
+    let current = this.head;
+    this.head = this.tail;
+    this.tail = current;
+    while (current) {
+      const afterNode = current.next;
+      current.prev = afterNode;
+      current.next = previousNode;
+      previousNode = current;
+      current = afterNode;
+    }
+    return this;
+  }
 }
 
 // const node = new Node('mango');
@@ -172,5 +188,6 @@ list.get(5); //?
 list.set(6, 7); //?
 list.insert(6, 7); //?
 list.insert(4, 55); //?
-list.remove(7); //?
+list.remove(4); //?
+console.log(list.reverse());
 list;
