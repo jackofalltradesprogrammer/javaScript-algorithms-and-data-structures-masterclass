@@ -26,10 +26,28 @@ class Queue {
     }
     return this.length++;
   }
+
+  dequeue() {
+    if (!this.length) {
+      return null;
+    }
+    const temp = this.first;
+    this.first = temp.next;
+    temp.next = null;
+    this.length--;
+    if (this.length === 0) {
+      this.last = null;
+    }
+    return temp.val;
+  }
 }
 
 const queue = new Queue();
 queue.enqueue(5);
 queue.enqueue(7);
 queue.enqueue(8);
+queue.dequeue(); //?
+queue.dequeue(); //?
+queue.dequeue(); //?
+queue.dequeue(); //?
 queue;
