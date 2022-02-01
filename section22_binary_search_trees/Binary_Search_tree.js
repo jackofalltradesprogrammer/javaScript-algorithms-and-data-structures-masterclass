@@ -34,6 +34,38 @@ class BinarySearchTree {
     }
     return this;
   }
+
+  // find() - return true if the value is found in the tree
+  // recursive solution
+  findRecursive(value) {
+    function recursive(current) {
+      if (!current) return false;
+
+      if (value < current.value) {
+        return recursive(current.left);
+      } else if (value > current.value) {
+        return recursive(current.right);
+      } else if (value === current.value) {
+        return true;
+      }
+    }
+    return recursive(this.root);
+  }
+
+  find(value) {
+    if (!this.root) return false;
+    let current = this.root;
+    while (current) {
+      if (value < current.value) {
+        current = current.left;
+      } else if (value > current.value) {
+        current = current.right;
+      } else {
+        return true;
+      }
+    }
+    return false;
+  }
 }
 
 const tree = new BinarySearchTree();
@@ -45,5 +77,6 @@ tree.insert(10);
 tree.insert(15);
 tree.insert(7);
 tree.insert(9);
+tree.find(12); //?
 
 tree;
