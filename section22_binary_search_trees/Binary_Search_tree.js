@@ -80,3 +80,5 @@ tree.insert(9);
 tree.find(12); //?
 
 tree;
+
+export default BinarySearchTree;
