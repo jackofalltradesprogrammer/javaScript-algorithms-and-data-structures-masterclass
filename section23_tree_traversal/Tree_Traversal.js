@@ -36,6 +36,15 @@ class BreadthFirstSearch extends BinarySearchTree {
     recursive([this.root]);
     return result;
   }
+
+  // DFSPreOrder - Depth first search for pre order
+  DFSPreOrder(node = this.root, result = []) {
+    if (!node) return result;
+    result.push(node.value);
+    if (node.left) this.DFSPreOrder(node.left, result);
+    if (node.right) this.DFSPreOrder(node.right, result);
+    return result;
+  }
 }
 
 const tree = new BreadthFirstSearch();
@@ -46,5 +55,6 @@ tree.insert(3);
 tree.insert(8);
 tree.insert(20);
 tree.BFS(); //?
+tree.DFSPreOrder(); //?
 
 tree;
