@@ -6,7 +6,7 @@ class BreadthFirstSearch extends BinarySearchTree {
   }
 
   //BFS() - Implement Breadth first search
-  BFS() {
+  BFS2() {
     const queue = [this.root]; // using push() and shift() to add/remove nodes
     const result = [];
     let current = this.root;
@@ -18,6 +18,22 @@ class BreadthFirstSearch extends BinarySearchTree {
       if (current.left) queue.push(current.left);
       if (current.right) queue.push(current.right);
     }
+    return result;
+  }
+
+  // BFS() - recursive
+  BFS() {
+    // const queue = [this.root];
+    const result = [];
+    function recursive(queue) {
+      if (!queue.length) return;
+      const current = queue.shift();
+      result.push(current.value);
+      if (current.left) queue.push(current.left);
+      if (current.right) queue.push(current.right);
+      recursive(queue);
+    }
+    recursive([this.root]);
     return result;
   }
 }
