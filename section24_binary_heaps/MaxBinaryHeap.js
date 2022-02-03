@@ -17,11 +17,22 @@ class MaxBinaryHeap {
     }
   }
 
+  bubbleUpRecursive(index = this.values.length - 1) {
+    if (index === 0) return;
+    const currentVal = this.values[index];
+    const parentIndex = Math.floor((index - 1) / 2);
+    const parentVal = this.values[parentIndex];
+    if (currentVal <= parentVal) return;
+    this.values[parentIndex] = currentVal;
+    this.values[index] = parentVal;
+    this.bubbleUpRecursive(parentIndex);
+  }
+
   // insert(value)  - adds an element to the max heap and
   //                  make sure the heap is correctly structured.
   insert(value) {
     this.values.push(value);
-    this.bubbleUp();
+    this.bubbleUpRecursive();
   }
 
   // bubbleDown(index)  - moves the value index down at the correct postioning
@@ -57,20 +68,48 @@ class MaxBinaryHeap {
       index = childIndex;
     }
   }
+
+  bubbleDownRecursive(index = 0, length = this.values.length) {
+    // 1 23 24 23 11 9
+    const current = this.values[index];
+    const leftIndex = 2 * index + 1;
+    let childIndex = null;
+    let leftElement = null;
+    if (leftIndex < length) {
+      leftElement = this.values[leftIndex];
+    }
+    const rightIndex = 2 * index + 2;
+    let rightElement = null;
+    if (rightIndex < length) {
+      rightElement = this.values[rightIndex];
+    }
+    if (current < leftElement || current < rightElement) {
+      if (leftElement > rightElement) {
+        childIndex = leftIndex;
+      } else {
+        childIndex = rightIndex;
+      }
+    } else {
+      return;
+    }
+    this.values[index] = this.values[childIndex];
+    this.values[childIndex] = current;
+    this.bubbleDownRecursive(childIndex);
+  }
+
   // extractMax() - remove the max element from the max binary heap
   extractMax() {
     const max = this.values[0];
     const end = this.values.pop();
     if (this.values.length > 0) {
       this.values[0] = end;
-      this.bubbleDown();
+      this.bubbleDownRecursive();
     }
     return max;
   }
 }
 
 const maxBinaryHeap = new MaxBinaryHeap();
-maxBinaryHeap.insert(41);
 maxBinaryHeap.insert(39);
 maxBinaryHeap.insert(33);
 maxBinaryHeap.insert(18);
