@@ -3,6 +3,7 @@ class MaxBinaryHeap {
     this.values = [];
   }
 
+  // To fix the postioning of the values to satisfy the rules of max heap
   bubbleUp(index = this.values.length - 1) {
     const currentVal = this.values[index];
     while (index > 0) {
@@ -16,6 +17,8 @@ class MaxBinaryHeap {
     }
   }
 
+  // insert(value)  - adds an element to the max heap and
+  //                  make sure the heap is correctly structured.
   insert(value) {
     this.values.push(value);
     this.bubbleUp();
