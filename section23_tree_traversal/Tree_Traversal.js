@@ -45,6 +45,30 @@ class BreadthFirstSearch extends BinarySearchTree {
     if (node.right) this.DFSPreOrder(node.right, result);
     return result;
   }
+
+  // DFSPostOrder - Depth first search post order
+  DFSPostOrder() {
+    const result = [];
+    function recursive(current) {
+      if (current.left) recursive(current.left);
+      if (current.right) recursive(current.right);
+      result.push(current.value);
+    }
+    recursive(this.root);
+    return result;
+  }
+
+  // DFSInOrder - Depth first search (In Order)
+  DFSInOrder() {
+    const result = [];
+    function recursive(current) {
+      if (current.left) recursive(current.left);
+      result.push(current.value);
+      if (current.right) recursive(current.right);
+    }
+    recursive(this.root);
+    return result;
+  }
 }
 
 const tree = new BreadthFirstSearch();
@@ -56,5 +80,7 @@ tree.insert(8);
 tree.insert(20);
 tree.BFS(); //?
 tree.DFSPreOrder(); //?
+tree.DFSPostOrder(); //?
+tree.DFSInOrder(); //?
 
 tree;
