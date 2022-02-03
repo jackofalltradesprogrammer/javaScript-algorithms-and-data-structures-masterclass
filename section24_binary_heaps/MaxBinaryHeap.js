@@ -4,17 +4,15 @@ class MaxBinaryHeap {
   }
 
   bubbleUp(index = this.values.length - 1) {
+    const currentVal = this.values[index];
     while (index > 0) {
-      const currentVal = this.values[index];
       const parentIndex = Math.floor((index - 1) / 2); // value of index
-      const parentCurrentVal = this.values[parentIndex];
-      if (currentVal > parentCurrentVal) {
-        this.values[parentIndex] = currentVal;
-        this.values[index] = parentCurrentVal;
-        index = parentIndex;
-      } else {
-        break;
-      }
+      const parentVal = this.values[parentIndex];
+
+      if (currentVal <= parentVal) break;
+      this.values[parentIndex] = currentVal;
+      this.values[index] = parentVal;
+      index = parentIndex;
     }
   }
 
@@ -30,5 +28,7 @@ maxBinaryHeap.insert(11);
 maxBinaryHeap.insert(9);
 maxBinaryHeap.insert(2);
 maxBinaryHeap.insert(20);
+maxBinaryHeap.insert(1);
+maxBinaryHeap.insert(199);
 
 maxBinaryHeap;
