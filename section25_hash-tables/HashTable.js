@@ -37,6 +37,22 @@ class HashTable {
     }
     return undefined;
   }
+
+  getKeysOrValues(getValues = false) {
+    const keysOrValues = [];
+    for (let collection of this.keyMap) {
+      for (let i = 0; collection && i < collection.length; i++) {
+        const object = collection[i];
+        if (object) {
+          const keyValueIndex = getValues ? 1 : 0;
+          if (!keysOrValues.includes(object[keyValueIndex])) {
+            keysOrValues.push(object[keyValueIndex]);
+          }
+        }
+      }
+    }
+    return keysOrValues;
+  }
 }
 
 const hash = new HashTable();
@@ -45,8 +61,11 @@ hash.set('blue', '#234236');
 hash.set('green', '#63236');
 hash.set('black', '#734236');
 hash.set('red', '#034236');
+hash.set('red', '#034236');
 hash.get('pink'); //?
 hash.get('blue'); //?
 hash.get('green'); //?
 hash.get('black'); //?
+hash.getKeysOrValues(); //?
+hash.getKeysOrValues(true); //?
 hash;
