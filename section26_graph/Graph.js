@@ -23,6 +23,16 @@ class Graph {
       edge => edge !== vertex1,
     );
   }
+
+  // removeVertex(vertex) - removes the vertex from the adjacenyList and the corresponding edges
+  removeVertex(vertex) {
+    // make sure it exists
+    const vertexEdges = this.adjacenyList[vertex];
+    for (let v of vertexEdges) {
+      this.removeEdge(v, vertex);
+    }
+    delete this.adjacenyList[vertex];
+  }
 }
 
 const graph = new Graph();
@@ -31,6 +41,6 @@ graph.addVertex('Tokyo');
 graph.addVertex('Aspen');
 graph.addEdge('Dallas', 'Tokyo');
 graph.addEdge('Dallas', 'Aspen');
-graph.removeEdge('Dallas', 'Tokyo');
 graph.removeEdge('Dallas', 'Aspen');
+graph.removeVertex('Dallas');
 graph;
