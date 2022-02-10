@@ -45,6 +45,19 @@ class Graph {
     }
     return result;
   }
+
+  dfsIterative(vertex, visited = {}, result = []) {
+    const stack = [vertex];
+    while (stack.length) {
+      const vertex = stack.pop();
+      if (!visited[vertex]) {
+        result.push(vertex);
+        visited[vertex] = true;
+        this.adjacenyList[vertex].forEach(neighbor => stack.push(neighbor));
+      }
+    }
+    return result;
+  }
 }
 
 const graph = new Graph();
@@ -66,5 +79,6 @@ graphDFS.addEdge('D', 'E');
 graphDFS.addEdge('D', 'F');
 graphDFS.addEdge('E', 'F');
 graphDFS.depthFirstRecursive('A'); //?
+graphDFS.dfsIterative('A'); //?
 
 graphDFS;
