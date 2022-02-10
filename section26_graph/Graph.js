@@ -34,6 +34,7 @@ class Graph {
     delete this.adjacenyList[vertex];
   }
 
+  // Depth First Traversal - Visting while going deep and then coming back to neighbors
   depthFirstRecursive(vertex, visited = {}, result = []) {
     if (!vertex && !this.adjacenyList[vertex]) return result;
     result.push(vertex);
@@ -46,8 +47,8 @@ class Graph {
     return result;
   }
 
-  dfsIterative(vertex, visited = {}, result = []) {
-    const stack = [vertex];
+  dfsIterative(start, visited = {}, result = []) {
+    const stack = [start];
     while (stack.length) {
       const vertex = stack.pop();
       if (!visited[vertex]) {
@@ -55,6 +56,24 @@ class Graph {
         visited[vertex] = true;
         this.adjacenyList[vertex].forEach(neighbor => stack.push(neighbor));
       }
+    }
+    return result;
+  }
+
+  // Breadth first traversal using a queue; Visiting neighbors first.
+  breadthFirstTraversal(start, visited = {}, result = []) {
+    const queue = [start];
+    visited[start] = true;
+
+    while (queue.length) {
+      const vertex = queue.shift();
+      result.push(vertex);
+      this.adjacenyList[vertex].forEach(neighbor => {
+        if (!visited[neighbor]) {
+          queue.push(neighbor);
+          visited[neighbor] = true;
+        }
+      });
     }
     return result;
   }
@@ -80,5 +99,6 @@ graphDFS.addEdge('D', 'F');
 graphDFS.addEdge('E', 'F');
 graphDFS.depthFirstRecursive('A'); //?
 graphDFS.dfsIterative('A'); //?
+graphDFS.breadthFirstTraversal('A'); //?
 
 graphDFS;
