@@ -33,6 +33,18 @@ class Graph {
     }
     delete this.adjacenyList[vertex];
   }
+
+  depthFirstRecursive(vertex, visited = {}, result = []) {
+    if (!vertex && !this.adjacenyList[vertex]) return result;
+    result.push(vertex);
+    visited[vertex] = true;
+    for (let neighbor of this.adjacenyList[vertex]) {
+      if (!visited[neighbor]) {
+        this.depthFirstRecursive(neighbor, visited, result);
+      }
+    }
+    return result;
+  }
 }
 
 const graph = new Graph();
@@ -43,4 +55,16 @@ graph.addEdge('Dallas', 'Tokyo');
 graph.addEdge('Dallas', 'Aspen');
 graph.removeEdge('Dallas', 'Aspen');
 graph.removeVertex('Dallas');
-graph;
+
+const graphDFS = new Graph();
+['A', 'B', 'C', 'D', 'E', 'F'].forEach(v => graphDFS.addVertex(v));
+graphDFS.addEdge('A', 'B');
+graphDFS.addEdge('A', 'C');
+graphDFS.addEdge('B', 'D');
+graphDFS.addEdge('C', 'E');
+graphDFS.addEdge('D', 'E');
+graphDFS.addEdge('D', 'F');
+graphDFS.addEdge('E', 'F');
+graphDFS.depthFirstRecursive('A'); //?
+
+graphDFS;
